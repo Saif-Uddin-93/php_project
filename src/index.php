@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>PHP example project</title>
 </head>
-<body>
-    <div class="max-viewport yellow-fill background">
-    </div>
+<body class="max-viewport yellow-fill background">
+    <h1>Salaah times</h1>
+    <main>
+    <h2>February</h2>
     <?php
     // Connect to the PostgreSQL database
     try {
@@ -25,7 +26,7 @@
         // Display the table
         $numFields = pg_num_fields($query_response);
         $numRows = pg_num_rows($query_response);
-        echo '<table border="1">';
+        echo '<table>';
         echo '<tr>';
         for ($i = 0; $i < $numFields; $i++) {
             echo '<th>' . pg_field_name($query_response, $i) . '</th>';
@@ -41,5 +42,6 @@
         exit;
     }
     ?>
+    </main>
 </body>
 </html>
