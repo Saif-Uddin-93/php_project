@@ -9,7 +9,7 @@
 <body class="max-viewport yellow-fill background">
     <h1>Salaah times</h1>
     <main>
-        <h2>February</h2>
+        <h2>February 2025</h2>
         <?php
         $json = file_get_contents("config.json");
         $config = json_decode($json, true);
