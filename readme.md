@@ -1,4 +1,4 @@
-Project uses PostgreSQL database hosted in a container on local network.
+A small project to demonstrate the use of PHP with a PostgreSQL database hosted in a debian container on my home server.
 
 Here is a screenshot what is output with data from the postgres database.
 
