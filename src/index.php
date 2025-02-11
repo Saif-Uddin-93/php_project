@@ -24,17 +24,24 @@
         pg_close($conn);
 
         // Display the table
+        $headers = [];
         $numFields = pg_num_fields($query_response);
         $numRows = pg_num_rows($query_response);
         echo '<table>';
         echo '<tr>';
         for ($i = 0; $i < $numFields; $i++) {
-            echo '<th>' . pg_field_name($query_response, $i) . '</th>';
+            $headers[] = pg_field_name($query_response, $i);
+            echo '<th>' . $headers[$i] . '</th>';
         }
         echo '</tr>';
         for ($i = 0; $i < $numRows; $i++){
             $row = pg_fetch_assoc($query_response, $i);
             echo "<tr>" . "<td>" . $row['date'] . "</td><td>" . $row['day'] . "</td><td>" . $row['fajr'] . "</td><td>" . $row['zuhr'] . "</td><td>" . $row['asr'] . "</td><td>" . $row['maghrib'] . "</td><td>" . $row['isha'] . "</td></tr>";
+            // echo "<tr>";
+            // for ($j = 0; $j < $numFields; $j++) {
+            //     echo "<td>" . $row[$headers[$j]] . "</td>";
+            // }
+            // echo "</tr>";
         }
 
     } catch (Exception $e) {
