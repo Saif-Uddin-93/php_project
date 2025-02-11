@@ -47,25 +47,30 @@
             throw new Exception(pg_last_error());
         }
         // Execute the query
-        $rs = pg_query($conn, "SELECT * FROM jamaat_times");
+        $query_response = pg_query($conn, "SELECT * FROM jamaat_times");
         
         // Close the connection
         pg_close($conn);
-        
+
         // Display the table headers
-        $headers = pg_field_name($rs, 0);
-        $numFields = pg_num_fields($rs);
+        $headers = pg_field_name($query_response, 0);
+        $numFields = pg_num_fields($query_response);
+        $numRows = pg_num_rows($query_response);
         echo '<table border="1">';
         echo '<tr>';
         for ($i = 0; $i < $numFields; $i++) {
-            echo '<th>' . pg_field_name($rs, $i) . '</th>';
+            echo '<th>' . pg_field_name($query_response, $i) . '</th>';
         }
         echo '</tr>';
+        for ($i = 0; $i < $numRows; $i++){
+            $row = pg_fetch_assoc($query_response, $i);
+            echo "<tr>" . "<td>" . $row['date'] . "</td><td>" . $row['day'] . "</td><td>" . $row['fajr'] . "</td><td>" . $row['zuhr'] . "</td><td>" . $row['asr'] . "</td><td>" . $row['maghrib'] . "</td><td>" . $row['isha'] . "</td></tr>";
+        }
 
         // Fetch the records
-        while ($row = pg_fetch_assoc($rs)) {
-            echo $row['column1'] . " " . $row['column2'] . " " . $row['column3'] . "<br>";
-        }
+        // while ($row = pg_fetch_assoc($query_response)) {
+        //     echo $row['column1'] . " test " . $row['column2'] . " " . $row['column3'] . "<br>";
+        // }
 
         // // Close the connection
         // pg_close($conn);
@@ -75,17 +80,17 @@
     }
     ?>
     <?php
-    // Display the table headers
-        // $headers = pg_field_name($rs, 0);
-        // $numFields = pg_num_fields($rs);
-        echo '<br>';
-        echo '<table border="1">';
-        echo '<tr>';
-        for ($i = 0; $i < $numFields; $i++) {
-            echo '<th>' . pg_field_name($rs, $i) . '</th>';
-        }
-        echo '</tr>';
-        echo '<br>';
+    // // Display the table headers
+    // // $headers = pg_field_name($query_response, 0);
+    // // $numFields = pg_num_fields($query_response);
+    // echo '<br>';
+    // echo '<table border="1">';
+    // echo '<tr>';
+    // for ($i = 0; $i < $numFields; $i++) {
+    //     echo '<th>' . pg_field_name($query_response, $i) . '</th>';
+    // }
+    // echo '</tr>';
+    // echo '<br>';
     ?>
 </body>
 </html>
