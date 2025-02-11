@@ -50,7 +50,6 @@
             }
 
         } catch (Exception $e) {
-            echo "host=" . getenv('PHP_POJ_HOST');
             echo "Error connecting to database: " . $e->getMessage();
             exit;
         }
