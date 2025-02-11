@@ -48,7 +48,10 @@
         }
         // Execute the query
         $rs = pg_query($conn, "SELECT * FROM jamaat_times");
-
+        
+        // Close the connection
+        pg_close($conn);
+        
         // Display the table headers
         $headers = pg_field_name($rs, 0);
         $numFields = pg_num_fields($rs);
@@ -64,12 +67,25 @@
             echo $row['column1'] . " " . $row['column2'] . " " . $row['column3'] . "<br>";
         }
 
-        // Close the connection
-        pg_close($conn);
+        // // Close the connection
+        // pg_close($conn);
     } catch (Exception $e) {
         echo "Error connecting to database: " . $e->getMessage();
         exit;
     }
+    ?>
+    <?php
+    // Display the table headers
+        // $headers = pg_field_name($rs, 0);
+        // $numFields = pg_num_fields($rs);
+        echo '<br>';
+        echo '<table border="1">';
+        echo '<tr>';
+        for ($i = 0; $i < $numFields; $i++) {
+            echo '<th>' . pg_field_name($rs, $i) . '</th>';
+        }
+        echo '</tr>';
+        echo '<br>';
     ?>
 </body>
 </html>
