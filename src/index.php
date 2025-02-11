@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
-<body>
-    <div class="max-viewport yellow-fill background">
-    </div>
+<body class="max-viewport yellow-fill background">
+    <h1>Salaah times</h1>
+    <main>
     <?php
     // try {
-    //     // Connect to the PostgreSQL database
+    //     // Connect to the PostgreSQL database using PDO
     //     $pdo = new PDO('pgsql:host=192.168.1.205;port=5433;dbname=postgres', 'postgres', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     //     // $connection = pg_connect("host=192.168.1.205 db_name=postgres user=postgres");
     //     // Define the SQL query to fetch records
@@ -39,6 +39,7 @@
     //     echo "Error fetching records: " . $e->getMessage();
     // }
     ?>
+    <h2>February</h2>
     <?php
     // Connect to the PostgreSQL database
     try {
@@ -52,11 +53,11 @@
         // Close the connection
         pg_close($conn);
 
-        // Display the table headers
-        $headers = pg_field_name($query_response, 0);
+        // Display the table
+        // $headers = pg_field_name($query_response, 0);
         $numFields = pg_num_fields($query_response);
         $numRows = pg_num_rows($query_response);
-        echo '<table border="1">';
+        echo '<table>';
         echo '<tr>';
         for ($i = 0; $i < $numFields; $i++) {
             echo '<th>' . pg_field_name($query_response, $i) . '</th>';
@@ -67,13 +68,6 @@
             echo "<tr>" . "<td>" . $row['date'] . "</td><td>" . $row['day'] . "</td><td>" . $row['fajr'] . "</td><td>" . $row['zuhr'] . "</td><td>" . $row['asr'] . "</td><td>" . $row['maghrib'] . "</td><td>" . $row['isha'] . "</td></tr>";
         }
 
-        // Fetch the records
-        // while ($row = pg_fetch_assoc($query_response)) {
-        //     echo $row['column1'] . " test " . $row['column2'] . " " . $row['column3'] . "<br>";
-        // }
-
-        // // Close the connection
-        // pg_close($conn);
     } catch (Exception $e) {
         echo "Error connecting to database: " . $e->getMessage();
         exit;
@@ -92,5 +86,6 @@
     // echo '</tr>';
     // echo '<br>';
     ?>
+    </main>
 </body>
 </html>

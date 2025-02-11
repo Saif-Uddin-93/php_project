@@ -2,16 +2,32 @@
     margin: 0;
     padding: 0;
 }
+
+h1, h2{
+    margin: 1rem;
+}
+
 .yellow-fill{
     background-color: yellow;
     height: 100%;
     width: 100%;
 }
+
 .max-viewport{
     height: 100vh;
     width: 100vw;
 }
+
 .background{
     position: absolute;
     z-index: -1;
+}
+
+table{
+    margin: 1rem;
+    border:1px solid black;
+    th, td{
+        padding: 0.5rem;
+        min-width: 3rem;
+    }
 }
