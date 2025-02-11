@@ -36,12 +36,12 @@
             echo '</tr>';
             for ($i = 0; $i < $numRows; $i++){
                 $row = pg_fetch_assoc($query_response, $i);
-                echo "<tr>" . "<td>" . $row['date'] . "</td><td>" . $row['day'] . "</td><td>" . $row['fajr'] . "</td><td>" . $row['zuhr'] . "</td><td>" . $row['asr'] . "</td><td>" . $row['maghrib'] . "</td><td>" . $row['isha'] . "</td></tr>";
-                // echo "<tr>";
-                // for ($j = 0; $j < $numFields; $j++) {
-                //     echo "<td>" . $row[$headers[$j]] . "</td>";
-                // }
-                // echo "</tr>";
+                // echo "<tr>" . "<td>" . $row['date'] . "</td><td>" . $row['day'] . "</td><td>" . $row['fajr'] . "</td><td>" . $row['zuhr'] . "</td><td>" . $row['asr'] . "</td><td>" . $row['maghrib'] . "</td><td>" . $row['isha'] . "</td></tr>";
+                echo "<tr>";
+                for ($j = 0; $j < count($headers); $j++) {
+                    echo "<td>" . $row[$headers[$j]] . "</td>";
+                }
+                echo "</tr>";
             }
 
         } catch (Exception $e) {
