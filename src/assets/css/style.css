@@ -4,12 +4,16 @@
     color: rgb(0, 0, 170);
 }
 
+main{
+    overflow:hidden
+}
+
 h1, h2{
     margin: 1rem;
 }
 
 .yellow-fill{
-    background-color: yellow;
+    background-color: rgb(255, 238, 0);
     height: 100%;
     width: 100%;
 }
