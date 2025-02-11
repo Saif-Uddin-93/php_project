@@ -11,9 +11,15 @@
     <main>
         <h2>February</h2>
         <?php
+        $json = file_get_contents("config.json");
+        $config = json_decode($json, true);
         // Connect to the PostgreSQL database
         try {
-            $conn = pg_connect("host=192.168.1.205 port=5433 dbname=postgres user=postgres");
+            $conn = pg_connect(
+                "host=" . $config["PHP_Project"]["host"] . " " .
+                "port=" . $config["PHP_Project"]["port"] . " " .
+                "dbname=" . $config["PHP_Project"]["db"] . " " .
+                "user=" . $config["PHP_Project"]["user"]);
             if (!$conn) {
                 throw new Exception(pg_last_error());
             }
@@ -44,6 +50,7 @@
             }
 
         } catch (Exception $e) {
+            echo "host=" . getenv('PHP_POJ_HOST');
             echo "Error connecting to database: " . $e->getMessage();
             exit;
         }
